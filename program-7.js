@@ -4,6 +4,10 @@ class Book {
   constructor(title, author, year) {
     this.title = title;
     this.author = author;
+
+    if (!Number.isInteger(year) || year < 0) {
+      throw new Error("Enter a valid Year");
+    }
     this.year = year;
   }
 
@@ -17,6 +21,11 @@ class Book {
 class Ebook extends Book {
   constructor(title, author, year, price) {
     super(title, author, year);
+
+    if (!Number.isInteger(price) || price < 0) {
+      throw new Error("Enter a valid amount");
+    }
+
     this.price = price;
   }
 
@@ -27,5 +36,9 @@ class Ebook extends Book {
   }
 }
 
-const ebook1 = new Ebook("Do Epic Shit", "Ankur Warikoo", 2021, 450);
-ebook1.displayDetails();
+try {
+  const ebook1 = new Ebook("Do Epic Shit", "Ankur Warikoo", 2021, 450);
+  ebook1.displayDetails();
+} catch (error) {
+  console.error(`Error:`, error.message);
+}

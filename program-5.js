@@ -2,6 +2,13 @@
 
 class Shape {
   calcArea(height, width) {
+    if (!Number.isInteger(height) || height < 0) {
+      throw new Error("Enter Valid Height");
+    }
+
+    if (!Number.isInteger(width) || width < 0) {
+      throw new Error("Enter Valid Width");
+    }
     this.height = height;
     this.width = width;
   }
@@ -10,6 +17,10 @@ class Shape {
 class Circle extends Shape {
   constructor(radius) {
     super();
+
+    if (!Number.isInteger(radius) || radius < 0) {
+      throw new Error("Enter Valid Radius");
+    }
     this.radius = radius;
   }
 
@@ -23,6 +34,14 @@ class Circle extends Shape {
 class Triangle extends Shape {
   constructor(base, height) {
     super();
+
+    if (!Number.isInteger(base) || height < 0) {
+      throw new Error("Enter Valid Height");
+    }
+
+    if (!Number.isInteger(height) || height < 0) {
+      throw new Error("Enter Valid Height");
+    }
     this.base = base;
     this.height = height;
   }
@@ -34,8 +53,12 @@ class Triangle extends Shape {
   }
 }
 
-const circ1 = new Circle(10);
-console.log(circ1.calcArea());
+try {
+  const circ1 = new Circle(10);
+  console.log(circ1.calcArea());
 
-const triangle1 = new Triangle(10, 15);
-console.log(triangle1.calcArea());
+  const triangle1 = new Triangle(10, 15);
+  console.log(triangle1.calcArea());
+} catch (error) {
+  console.error(`Error:`, error.message);
+}

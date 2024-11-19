@@ -2,6 +2,10 @@
 
 class Employee {
   constructor(name, salary) {
+    if (!Number.isInteger(salary) || salary < 0) {
+      throw new Error("Enter a valid salary");
+    }
+
     this.name = name;
     this.salary = salary;
   }
@@ -23,9 +27,13 @@ class Manager extends Employee {
   }
 }
 
-const emp1 = new Employee("emp1", 25000);
-console.log(emp1.getAnnualSalary());
+try {
+  const emp1 = new Employee("emp1", 25000);
+  console.log(emp1.getAnnualSalary());
 
-const Ankur = new Manager("Ankur", 50000, "IT");
-console.log(Ankur);
-console.log(Ankur.getAnnualSalary());
+  const Ankur = new Manager("Ankur", 50000, "IT");
+  console.log(Ankur);
+  console.log(Ankur.getAnnualSalary());
+} catch (error) {
+  console.error(`Error:`, error.message);
+}
